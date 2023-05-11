@@ -5,7 +5,7 @@ const meter = new Swiper('.meter', {
     draggable: true,
   },
   mousewheel: {
-    invert: false,
+    enabled: false,
   },
   grabCursor: true,
   direction: "vertical",
@@ -23,7 +23,7 @@ const centimeter = new Swiper('.centimeter', {
     draggable: true,
   },
   mousewheel: {
-    invert: false,
+    enabled: false,
   },
   grabCursor: true,
   direction: "vertical",
@@ -155,7 +155,7 @@ const connector1 = new Swiper('.connector1', {
     draggable: true,
   },
   mousewheel: {
-    invert: false,
+    enabled: false,
   },
   grabCursor: true,
   direction: "vertical",
@@ -192,7 +192,7 @@ const connector2 = new Swiper('.connector2', {
     draggable: true,
   },
   mousewheel: {
-    invert: false,
+    enabled: false,
   },
   grabCursor: true,
   direction: "vertical",

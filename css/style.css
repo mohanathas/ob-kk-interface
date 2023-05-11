@@ -201,17 +201,6 @@ body {
   max-width: 1100px;
 }
 
-#step-2.cableconfig-outer.container:after, #step-3.cableconfig-outer.container:after, #step-4.cableconfig-outer.container:after {
-  content: '';
-  position: absolute;
-  top: 170px;
-  left: 0;
-  display: block;
-  width: 100%;
-  height: 1px;
-  background-color: #E5E5E5;
-}
-
 #step-4 {
   padding-bottom: calc(4.25em + 100px);
   box-shadow: inset 0px -100px 0 0px #0A9146;
@@ -412,19 +401,30 @@ body {
   border-radius: 5px;
 }
 
+.cableconfig-outer .vert-list .card .card-body {
+  cursor: pointer;
+  user-select: none;
+  -o-user-select:none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+}
+
 .cableconfig-outer .vert-list .vl-check {
+  position: relative;
   flex: 1 1 95px;
+  max-width: 53px;
   box-shadow: inset -1px 0px 0px #dfdfdf;
 }
 
-.cableconfig-outer .vert-list .vl-checkbox + label {
+.cableconfig-outer .vert-list > .card > .card-body label {
   position: absolute;
   top: 0;
   left: 0;
   height: 100%;
   width: 100%;
   cursor: pointer;
-  z-index: 1;
+  z-index: 2;
 }
 
 .cableconfig-outer .vert-list .vl-checkbox:checked + label {
@@ -454,7 +454,7 @@ body {
 }
 
 .cableconfig-outer .vert-list .vl-column-1 > img {
-  max-width: 190px
+  width: 100%
 }
 
 .cableconfig-outer .vert-list .vl-column-1 .badge {
@@ -615,7 +615,6 @@ body, .card-value-input {
   font-size: 20px;
   font-weight: bold;
   background: #fff;
-  color: #d1d1d1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -674,7 +673,7 @@ body, .card-value-input {
 .swiper-number .swiper-slide > .unit-in-swiper {
   display: block;
   margin-left: 5px;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 300ms
 }
 .swiper-number .swiper-slide-next > .unit-in-swiper {
@@ -881,6 +880,7 @@ body, .card-value-input {
 
 .swiper-connector .swiper-slide.swiper-slide-active .cable-info {
   z-index: 1;
+  cursor: pointer;
 }
 
 .swiper-connector.connector1 .swiper-slide {
@@ -1020,13 +1020,21 @@ body, .card-value-input {
   font-size: 78.5%;
 }
 
+.cable-connector1-outer.cable-selected, 
+.cable-connector2-outer.cable-selected {
+  box-shadow: inset 0px 0px 0px 0px #0A9146, 0px 65px 0px 0px #0A9146;
+  transition: border 300ms, box-shadow 300ms;
+}
+.cable-length-outer.length-setted {
+  box-shadow: inset 0px 0px 0px 0px #0A9146, 0px 35px 0px 0px #0A9146, 0px 65px 0px 0px #0A9146;
+  transition: border 300ms, box-shadow 300ms;
+}
+.cable-connector1-outer.cable-selected > .card-value-outer,.cable-connector1-outer.cable-selected > .card-value-outer > .card-value-input,.cable-connector2-outer.cable-selected > .card-value-outer,.cable-connector2-outer.cable-selected > .card-value-outer > .card-value-input,.cable-length.length-setted + .card-value-outer,.cable-length.length-setted + .card-value-outer > .card-value-input {  color: #FFF !important;}
+
 
 @media(min-width: 1200px) {
     .cableconfig-outer {
         padding: 3em 4.25em 4.25em 4.25em;
-    }
-    #swiper-container {
-      margin-bottom: calc(65px + 2em);
     }
 }
 @media(min-width: 992px) and (max-width: 1199px) {
@@ -1035,16 +1043,9 @@ body, .card-value-input {
     }
 }
 @media(min-width: 992px) {
-  .cable-connector1-outer.cable-selected, 
-  .cable-connector2-outer.cable-selected {
-    box-shadow: inset 0px 0px 0px 0px #0A9146, 0px 65px 0px 0px #0A9146;
-    transition: border 300ms, box-shadow 300ms;
+  #swiper-container {
+    margin-bottom: calc(65px + 2em);
   }
-  .cable-length-outer.length-setted {
-    box-shadow: inset 0px 0px 0px 0px #0A9146, 0px 35px 0px 0px #0A9146, 0px 65px 0px 0px #0A9146;
-    transition: border 300ms, box-shadow 300ms;
-  }
-  .cable-connector1-outer.cable-selected > .card-value-outer,.cable-connector1-outer.cable-selected > .card-value-outer > .card-value-input,.cable-connector2-outer.cable-selected > .card-value-outer,.cable-connector2-outer.cable-selected > .card-value-outer > .card-value-input,.cable-length.length-setted + .card-value-outer,.cable-length.length-setted + .card-value-outer > .card-value-input {  color: #FFF !important;}
   /*
   .swiper-connector .swiper-slide-active:not(.dummy):after {
     content: '';
@@ -1109,23 +1110,8 @@ body, .card-value-input {
   .cableconfig-outer {
     margin: 15px;
   }
-  .mobile-col {
-    aspect-ratio: 1 / 1;
-  }
-  .mobile-col > .swiper-outer {
-    position: relative;
-    -webkit-transform: rotate(90deg) translateY(calc((-50%) - 1em));
-       -moz-transform: rotate(90deg) translateY(calc((-50%) - 1em));
-            transform: rotate(90deg) translateY(calc((-50%) - 1em));
-    transform-origin: 50% 0%;
-    top: 50%;
-    height: 100%;
-  }
-  .mobile-col > .swiper-outer > .swiper-connector {
-    max-height: 100%;
-  }
-  .mobile-col .cable-preview {
-    height: calc(100% - 59px);
+  .mobile-col.pb-5 {
+    padding-bottom: 5rem !important;
   }
   .cableconfig-outer.container .main-title {
     font-size: 2.25em;
@@ -1155,6 +1141,23 @@ body, .card-value-input {
   } 
 }
 @media(min-width: 768px) and (max-width: 991px) {
+  .border-md-left {
+    border-left: 1px solid #DFDFDF;
+  }
+}
+@media(min-width: 768px) {
+  #step-2.cableconfig-outer.container:after, #step-3.cableconfig-outer.container:after, #step-4.cableconfig-outer.container:after {
+    content: '';
+    position: absolute;
+    top: 170px;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: #E5E5E5;
+  } 
+}
+@media(min-width: 768px) and (max-width: 991px) {
   .cableconfig-outer {
     padding: 2.5em;
   }
@@ -1179,6 +1182,9 @@ body, .card-value-input {
   }
 }
 @media(max-width: 767px) {
+  .cableconfig-outer .h2.my-2 {
+     font-size: 1.25em
+  }
   .cableconfig-outer {
     padding: 25px;
   }
@@ -1195,6 +1201,33 @@ body, .card-value-input {
     animation: bgfade 2.5s forwards;
     animation-delay: 1.85s;
   }  
+	.cableconfig-outer .vert-list .vl-checkbox:checked + label {
+    border-radius: 5px 0 0 0px !important;	
+  }
+  .cableconfig-outer .vert-list .vl-check {
+      max-width: 53px;
+      flex: 1 1 53px;		
+  }
+  .cableconfig-outer .vert-list > .card > .card-body > .d-flex:last-of-type {
+    flex-wrap: wrap !important;
+  }
+  .vl-column-1 {
+      max-width: calc(100% - 53px);
+      flex: 1 1 calc(100% - 53px);
+      padding: 1.5em 0;
+  }
+  .vl-column-2, .vl-column-3 {
+    border-top: 1px solid #e7e7e7;
+  }
+  .cableconfig-outer .maxmeter {
+    position: relative !important;
+    width: 100% !important;
+    bottom: unset !important;
+  }
+  .cableconfig-outer .vert-list .vl-column-1 > img {
+    max-width: 100%;
+    width: 100%;
+  }
   @keyframes bgfade {
     0% {
       background-image: url('../img/1x1-00000000.png');
@@ -1207,6 +1240,11 @@ body, .card-value-input {
       background-image: url('../img/cable_step_1_bg_1.png'), url('../img/cable_step_1_bg_2.png');
       background-position: calc(100% + 130px) calc(100% + 155px), calc(100% + 10px) calc(100% + 30px);
     }
+  }
+}
+@media(min-width: 576px) and (max-width: 767px) {
+  .cableconfig-outer .vert-list > .card > .card-body > .d-flex:first-of-type {
+    border-right: 1px solid #e7e7e7;
   }
 }
 .swiper-rotate {
@@ -1310,30 +1348,6 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#eeeeee",endCo
   background-image: url(../img/step_3_bg.png);
 }
 
-.cableconfig-outer .vert-list .vl-checkbox:disabled + label {
-  background: rgb(255 255 255 / 65%);
-  border-radius: 0.25rem;
-}
-
-.cableconfig-outer .vert-list .vl-checkbox:disabled + label:before {
-  content: '❌ Kabel aktuell nicht verfügbar';
-  position: absolute;
-  left: 20px;
-  bottom: 0px;    
-  display: block;
-  width: calc(100% - 40px);
-  padding: 5px 10px;
-  border-radius: 0.25em;
-  color: #856404;
-  background-color: #fff3cd;
-  border-color: #ffeeba;
-  text-align: center;
-  font-weight: bold;
-  -webkit-transform: translateY(-50%);
-     -moz-transform: translateY(-50%);
-          transform: translateY(-50%);
-}
-
 .cableconfig-outer .vert-list .card.disabled {
 padding-bottom: 50px;
 }
@@ -1343,6 +1357,7 @@ padding-bottom: 50px;
   border-radius: 0.25rem;
 }
 
+/*
 .cableconfig-outer .vert-list .vl-checkbox:disabled + label:before {
   content: '❌ Kabel aktuell nicht verfügbar';
   position: absolute;
@@ -1359,6 +1374,7 @@ padding-bottom: 50px;
      -moz-transform: translateY(-50%);
           transform: translateY(-50%);
 }
+*/
 
 .cableconfig-outer .vert-list .card.disabled {
 padding-bottom: 50px;
